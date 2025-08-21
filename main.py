@@ -4,8 +4,7 @@ import random
 from fastapi import FastAPI
 from pydantic import BaseModel
 import json
-from tinydb import TinyDB, Query
-db = TinyDB("products.json")
+
 app = FastAPI()
 
 products = {
