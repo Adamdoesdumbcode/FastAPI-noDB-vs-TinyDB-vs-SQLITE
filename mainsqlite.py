@@ -42,12 +42,14 @@ async def get_api_key(api_key: str = Depends(api_key_header)):
 @app.get("/item/{id}")
 def read_item(id: int, api_key: str = Depends(get_api_key)):
     c.execute("""SELECT * FROM products WHERE id = ?""" , (id,))
-    return c.fetchone()
+    rows = c.fetchone()
+    return [{"id": r[0], "name": r[1], "price": r[2], "stock": r[3]} for r in rows]
 
 @app.get("/items")
 def read_items(api_key: str = Depends(get_api_key)):
     c.execute("SELECT * FROM products")
-    return c.fetchall()
+    rows =  c.fetchall()
+    return [{"id": r[0], "name": r[1], "price": r[2], "stock": r[3]} for r in rows]
 
 @app.post("/add")
 def add(product: Product, api_key: str = Depends(get_api_key)):
@@ -68,4 +70,5 @@ def replace(id: int, product: Product, api_key: str = Depends(get_api_key)):
 def search(search: str, api_key: str = Depends(get_api_key)):
     search_term = f"%{search}%"
     c.execute("SELECT * FROM products WHERE LOWER(name) LIKE LOWER(?)", (search_term,))
-    return c.fetchall()
+    rows = c.fetchall()
+    return [{"id": r[0], "name": r[1], "price": r[2], "stock": r[3]} for r in rows]
