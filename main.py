@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from routes import products
+from security import DEV_KEY
+
 
 app = FastAPI()
 

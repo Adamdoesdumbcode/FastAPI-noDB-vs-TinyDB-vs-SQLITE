@@ -36,7 +36,7 @@ def search_item(search: str, api_key: str = Depends(get_api_key)):
         return {"Message": "No products found"}
     return results
 
-@router.delete("/dbwipe")
+@router.post("/dbwipe")
 def dbwipe(dev_key: str = Depends(get_dev_key)):
     return reset_db()
 

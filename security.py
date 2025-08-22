@@ -3,6 +3,7 @@ from config import API_KEYCFG, DEV_KEYCFG
 from fastapi import HTTPException, Depends
 from fastapi.security.api_key import APIKeyHeader
 
+
 # STATIC STRONG KEYS
 API_KEY = API_KEYCFG
 DEV_KEY = DEV_KEYCFG
@@ -18,5 +19,8 @@ async def get_api_key(api_key: str = Depends(api_key_header)):
 
 async def get_dev_key(dev_key: str = Depends(dev_key_header)):
     if dev_key != DEV_KEY:
-        raise HTTPException(status_code=401, detail="Invalid API Key")
+        raise HTTPException(
+            status_code=401,
+            detail=f"Invalid DEV Key"
+        )
     return dev_key

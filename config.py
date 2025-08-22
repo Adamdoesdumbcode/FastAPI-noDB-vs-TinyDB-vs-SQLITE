@@ -1,4 +1,3 @@
-#add cfg here
-
+#add cfg herek
 API_KEYCFG = "STAMI_Ls9Qv3K7xF2pYt8WnG4aZ1b"
 DEV_KEYCFG = "DEV_R8mT5uK2qV6cN1yX0eJ4wS9v"
