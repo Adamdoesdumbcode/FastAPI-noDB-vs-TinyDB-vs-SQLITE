@@ -62,9 +62,11 @@ def search_items(search: str):
 
 
 def reset_db():
-    c.execute("DELETE FROM products")
+    c.execute("DELETE FROM products")                  # remove all rows
+    c.execute("DELETE FROM sqlite_sequence WHERE name='products'")  # reset autoincrement
     conn.commit()
-    return {
-        "Message": "Database reset",
-    }
+    return {"Message": "Database reset"}
+
+
+
 
